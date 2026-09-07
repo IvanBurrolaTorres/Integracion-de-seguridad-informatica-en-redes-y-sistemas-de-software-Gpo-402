@@ -26,6 +26,10 @@ fun RaceTrackerApp(modifier: Modifier = Modifier) {
         Button(onClick = { running = !running }) {
             Text(if (running) "Pausa" else "Arrancar")
         }
+        OutlinedButton(onClick = {
+            running = false
+            players.forEach { it.reset() }
+        }) { Text("Reiniciar") }
         players.forEach {
             Text(it.name)
             LinearProgressIndicator(progress = { it.currentProgress / 100f })
