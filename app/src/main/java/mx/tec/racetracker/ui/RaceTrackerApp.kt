@@ -6,12 +6,26 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import mx.tec.racetracker.RaceParticipant
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.coroutineScope
 
 @Composable
 fun RaceTrackerApp(modifier: Modifier = Modifier) {
     val players = remember { listOf(RaceParticipant("Jugador 1"), RaceParticipant("Jugador 2", 2)) }
+    var running by remember { mutableStateOf(false) }
+    if (running) {
+        LaunchedEffect(players) {
+            coroutineScope {
+                players.forEach { player -> launch { player.run() } }
+            }
+            running = false
+        }
+    }
     Column(modifier.padding(24.dp), verticalArrangement = Arrangement.spacedBy(16.dp)) {
         Text("Carrera", style = MaterialTheme.typography.headlineMedium)
+        Button(onClick = { running = !running }) {
+            Text(if (running) "Pausa" else "Arrancar")
+        }
         players.forEach {
             Text(it.name)
             LinearProgressIndicator(progress = { it.currentProgress / 100f })
