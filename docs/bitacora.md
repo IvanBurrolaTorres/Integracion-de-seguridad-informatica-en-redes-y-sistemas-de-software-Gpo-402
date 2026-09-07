@@ -23,3 +23,14 @@ La carrera utiliza el hilo principal y lo libera en cada delay. Dispatchers.IO s
 CancellationException se vuelve a lanzar. Sin un catch también se propagaría correctamente. Un catch amplio puede ocultar la cancelación; en el ejemplo específico con catch fuera del while, el ciclo sale, no sigue iterando mágicamente.
 
 Fuentes: https://developer.android.com/develop/ui/compose/side-effects y https://kotlinlang.org/docs/coroutines-basics.html
+
+## Quiniela: lista, ganador y estado
+Se eligió una List<RaceParticipant>: los tres tienen el mismo comportamiento y la lista permite lanzar, dibujar, reiniciar y comprobar metas con una sola regla. Evita olvidar al tercero al modificar una operación.
+
+El ViewModel conserva corredores, apuesta, velocidades, llegadas y marcador al girar. LaunchedEffect sigue siendo dueño de la ejecución: la actividad anterior cancela su efecto y la nueva lo reanuda desde el progreso conservado. Un Mutex evita solapamientos entre efectos al recrear la pantalla. Un identificador invalida continuaciones después de pausa o reinicio, incluso ante toques rápidos. No hay almacenamiento en disco; el requisito es conservar la sesión y la rotación.
+
+Cada nueva carrera mezcla [1, 2, 3] y asigna un incremento distinto a cada jugador. Cualquiera puede recibir el 3; la apuesta se cierra antes del sorteo. Reanudar conserva el sorteo original. Que se repita un ganador por azar es válido: no se fuerza una alternancia que haría predecible la apuesta.
+
+Cada corredor llama onFinish en el mismo paso en que llega a 100. Se agrega su identificador al orden de llegada; el primero es el ganador. El orden de await o de la lista no identifica quién llegó primero. Las actualizaciones están en Main y no se suspenden entre comprobar y agregar. coroutineScope espera a los tres y entonces registra una sola carrera y, si corresponde, un acierto.
+
+Reiniciar cancela la carrera sin contarla, borra apuesta y progreso, y conserva el marcador. Borrar marcador tiene su propio botón. La apuesta permanece cerrada durante una pausa para impedir cambiarla después de observar quién va ganando. El resultado usa la apuesta original, aunque se elija otro jugador para la siguiente carrera.
