@@ -13,4 +13,4 @@ Repositorio de actividades de la materia.
 
 Abre **laboratorio-3** en Android Studio. El historial conserva los commits `bloque-a`, `bloque-b`, `bloque-c`, `paso-d` y `quiniela`; el commit posterior organiza el proyecto dentro de la materia.
 
-Los dos videos se entregan por separado.
+Los dos videos de 40 segundos, sin audio, están en [entregables](laboratorio-3/entregables): [pausa y reanudación](laboratorio-3/entregables/01-pausa-reanudar.mp4) y [quiniela y rotación](laboratorio-3/entregables/02-quiniela-rotacion.mp4).
