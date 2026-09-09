@@ -1,9 +1,2 @@
-.gradle/
-.kotlin/
-.idea/
-**/build/
-local.properties
-*.iml
 .DS_Store
-entregables/*.apk
-entregables/*.mp4
+.idea/
