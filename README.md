@@ -18,8 +18,8 @@ Los dos videos de 40 segundos, sin audio, están en [entregables](laboratorio-3/
 
 ## Laboratorio 4 · Sabores en red
 
-[Repositorio privado y seis checkpoints](https://github.com/IvanBurrolaTorres/practica-4-a01562825).
+[Repositorio y seis checkpoints](https://github.com/IvanBurrolaTorres/practica-4-a01562825).
 
-El directorio `laboratorio-4` es un submódulo que conserva el repositorio y su historial propios, tal como pide esta práctica. Incluye proyecto Android, bitácora, video de 60 segundos sin audio y evidencias de las operaciones contra la API real. El acceso al código requiere permiso sobre el repositorio privado.
+El directorio `laboratorio-4` es un submódulo que conserva el repositorio y su historial propios, tal como pide esta práctica. Incluye proyecto Android, bitácora, video de 60 segundos y evidencias de las operaciones contra la API real. El repositorio es público.
 
-Para descargarlo junto con la materia, usa `git submodule update --init laboratorio-4` con una cuenta autorizada.
+Para descargarlo junto con la materia, usa `git submodule update --init laboratorio-4`.
